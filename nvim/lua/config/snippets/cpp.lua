@@ -21,7 +21,7 @@ int main({}, {}) {{
 }}
 ]], { i(1, "type"), i(2, "func"), i(3, "attr"), i(4, "// code to be executed") })),
     
-    s("cls", fmt([[
+    s("class", fmt([[
 class {} {{
     public:
 

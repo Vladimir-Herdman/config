@@ -1,4 +1,4 @@
--- requires
+--requires
 require("config.lazy")
 
 -- text
@@ -21,14 +21,61 @@ vim.opt.relativenumber = true
 vim.opt.number = true
 vim.opt.scrolloff = 999
 vim.opt.virtualedit = "block"
-
-vim.cmd([[
-    filetype plugin indent on
-]])
+vim.cmd("filetype plugin indent on")
 
 -- key bindings
-vim.keymap.set("n", "<leader>n", "<cmd>noh<CR> | <cmd>hls<CR>")  --Turn off/on hlsearch to clear highlights
-vim.keymap.set("n", "<leader>h", "<C-w>h")
-vim.keymap.set("n", "<leader>j", "<C-w>j")
-vim.keymap.set("n", "<leader>k", "<C-w>k")
-vim.keymap.set("n", "<leader>l", "<C-w>l")
+vim.keymap.set("n", "<leader>n", "<cmd>noh<CR>", { desc = "turn off hlsearch to clear search highlights" })
+vim.keymap.set("n", "<leader>h", "<C-w>h", { desc = "jump to left onscreen window/buffer" })
+vim.keymap.set("n", "<leader>j", "<C-w>j", { desc = "jump to below onscreen window/buffer" })
+vim.keymap.set("n", "<leader>k", "<C-w>k", { desc = "jump to above onscreen window/buffer" })
+vim.keymap.set("n", "<leader>l", "<C-w>l", { desc = "jump to right onscreen window/buffer" })
+vim.keymap.set("n", "<leader>fd", vim.lsp.buf.definition, { desc = "Go to function definition" })
+vim.keymap.set("n", "<leader>gw", vim.diagnostic.goto_next, { desc = "Go to next warning (diagnostic)" })
+
+-- Buffer
+vim.api.nvim_create_autocmd("BufAdd", {
+    callback = function()
+        local buffers_list = vim.api.nvim_list_bufs()
+        local hidden_buffers = {}
+        local hidden_count = 0
+        local max_hidden_buffers = 5
+
+        -- Get all hidden buffers
+        for _, buf in ipairs(buffers_list) do
+            if (vim.api.nvim_buf_is_valid(buf) and vim.fn.buflisted(buf) == 1 and #vim.fn.win_findbuf(buf) == 0) then
+                table.insert(hidden_buffers, vim.fn.getbufinfo(buf)[1])
+                hidden_count = hidden_count + 1
+            end
+        end
+
+        -- Sort hidden buffers by oldest
+        -- Delete oldest if over limit
+        if (#hidden_buffers > max_hidden_buffers) then
+            table.sort(hidden_buffers, function(a, b)
+                return a.lastused < b.lastused
+            end)
+
+            for i=2,5 do
+                vim.api.nvim_buf_delete(hidden_buffers[i].bufnr, { force = true })
+            end
+        end
+    end
+})
+
+-- Terminal
+vim.api.nvim_create_autocmd("TermOpen", {  -- Make terminal buffer look more terminal-like
+    group = vim.api.nvim_create_augroup("custom-term-open", { clear = true }),
+    callback = function()
+        vim.opt.number = false
+        vim.opt.relativenumber = false
+    end,
+})
+vim.keymap.set("t", "<esc><esc>", "<c-\\><c-n>", { desc = "Leave terminal mode while in terminal" })
+vim.keymap.set("n", "<leader>st", function()
+    vim.cmd.vnew()
+    vim.cmd.term()
+    vim.cmd.wincmd("J")
+    vim.api.nvim_win_set_height(0, 10)
+end, { desc = "Create small terminal at bottom of screen" })
+
+

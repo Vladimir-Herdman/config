@@ -7,7 +7,8 @@ return {
         },
         keys = {
             "<leader>tf",
-            "<leader>tc"
+            "<leader>tc",
+            "<leader>tg"
         },
         config = function()
             require("telescope").setup({
@@ -17,17 +18,16 @@ return {
                     }
                 },
                 extensions = {
-                    fd = {}
+                    fzf = {}
                 },
                 defaults = {
                     file_ignore_patterns = {
                         "Library/*", "Pictures/*", "Applications/*"
                     },
-                    find_command = {
-                        "fd . '.\' -E Library -E Applications -E Pictures"
-                    },
-                }
+                },
             })
+
+            require("telescope").load_extension("fzf")
 
             vim.keymap.set("n", "<leader>tf", require("telescope.builtin").find_files)
             vim.keymap.set("n", "<leader>tc", function()
@@ -36,6 +36,8 @@ return {
                     hidden = false
                 })
             end)
+
+            require("config.telescope.multigrep").setup()
         end,
     }
 }
