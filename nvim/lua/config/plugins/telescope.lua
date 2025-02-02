@@ -3,7 +3,7 @@ return {
         "nvim-telescope/telescope.nvim",
         dependencies = {
             "nvim-lua/plenary.nvim",
-            { "nvim-telescope/telescope-fzf-native.nvim", build = "make" }
+            { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
         },
         keys = {
             "<leader>tf",
@@ -14,8 +14,13 @@ return {
             require("telescope").setup({
                 pickers = {
                     find_files = {
-                        theme = "ivy"
-                    }
+                        theme = "ivy",
+                        mappings = {
+                            i = {
+                                ["<CR>"] = "select_default",
+                            },
+                        },
+                    },
                 },
                 extensions = {
                     fzf = {}
@@ -23,6 +28,11 @@ return {
                 defaults = {
                     file_ignore_patterns = {
                         "Library/*", "Pictures/*", "Applications/*"
+                    },
+                    mapping = {
+                        i = {
+                            ["<CR>"] = "select_default",
+                        },
                     },
                 },
             })

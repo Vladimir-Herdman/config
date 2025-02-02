@@ -26,12 +26,22 @@ local live_multigrep = function(opts)
                 table.insert(args, "-g")
                 table.insert(args, pieces[2])
             end
+            
+            local system_name = vim.uv.os_uname().sysname
+            if (system_name == "Darwin") then
 
-            ---@diagnostic disable-next-line: deprecated
-            return vim.tbl_flatten {
-                args,
-                { "--color=never", "--no-heading", "--with-filename", "--line-number", "--column", "--smart-case" }
-            }
+                ---@diagnostic disable-next-line: deprecated
+                return vim.tbl_flatten {
+                    args,
+                    { "--color=never", "--no-heading", "--with-filename", "--line-number", "--column", "--smart-case", "--no-ignore", "--glob=!Library/", "--glob=!Applications/", "--glob=!Pictures/" }
+                }
+            else
+                ---@diagnostic disable-next-line: deprecated
+                return vim.tbl_flatten {
+                    args,
+                    { "--color=never", "--no-heading", "--with-filename", "--line-number", "--column", "--smart-case", "--no-ignore" }
+                }
+            end
         end,
         entry_maker = make_entry.gen_from_vimgrep(opts),
         cwd = opts.cwd

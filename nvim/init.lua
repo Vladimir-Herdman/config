@@ -22,15 +22,24 @@ vim.opt.number = true
 vim.opt.scrolloff = 999
 vim.opt.virtualedit = "block"
 vim.cmd("filetype plugin indent on")
+vim.opt.signcolumn = "yes:1"
 
 -- key bindings
+    -- Clear highlights
 vim.keymap.set("n", "<leader>n", "<cmd>noh<CR>", { desc = "turn off hlsearch to clear search highlights" })
+    -- jump on screen buffers
 vim.keymap.set("n", "<leader>h", "<C-w>h", { desc = "jump to left onscreen window/buffer" })
 vim.keymap.set("n", "<leader>j", "<C-w>j", { desc = "jump to below onscreen window/buffer" })
 vim.keymap.set("n", "<leader>k", "<C-w>k", { desc = "jump to above onscreen window/buffer" })
 vim.keymap.set("n", "<leader>l", "<C-w>l", { desc = "jump to right onscreen window/buffer" })
+    -- Function stuff and lsp interaction
 vim.keymap.set("n", "<leader>fd", vim.lsp.buf.definition, { desc = "Go to function definition" })
-vim.keymap.set("n", "<leader>gw", vim.diagnostic.goto_next, { desc = "Go to next warning (diagnostic)" })
+vim.keymap.set("n", "<leader>fh", vim.lsp.buf.hover, { desc = "Displays hover information" })
+vim.keymap.set("n", "<leader>fs", vim.lsp.buf.signature_help, { desc = "Displays signature information" })
+vim.keymap.set("n", "<leader>gw", vim.diagnostic.goto_next, { desc = "Go to warning (diagnostic)" })
+vim.keymap.set("n", "<leader>fw", vim.lsp.buf.code_action, { desc = "Fix warning" })
+vim.keymap.set("n", "grn", vim.lsp.buf.rename, { desc = "Rename variable" })
+vim.keymap.set("n", "grr", vim.lsp.buf.references, { desc = "Get all variable references" })
 
 -- Buffer
 vim.api.nvim_create_autocmd("BufAdd", {
@@ -61,6 +70,12 @@ vim.api.nvim_create_autocmd("BufAdd", {
         end
     end
 })
+vim.api.nvim_create_autocmd("FileType", {  -- This is to keep telescope functionality while using pear-tree enter
+    pattern = "TelescopePrompt",
+    callback = function()
+        vim.b.pear_tree_enabled = false
+    end,
+})
 
 -- Terminal
 vim.api.nvim_create_autocmd("TermOpen", {  -- Make terminal buffer look more terminal-like
@@ -77,5 +92,3 @@ vim.keymap.set("n", "<leader>st", function()
     vim.cmd.wincmd("J")
     vim.api.nvim_win_set_height(0, 10)
 end, { desc = "Create small terminal at bottom of screen" })
-
-
