@@ -1,0 +1,15 @@
+let mapleader=" "
+
+set showmode
+set so=999
+set nu
+set rnu
+set hls
+set keymodel=
+
+set mouse=a
+set cursorline
+set incsearch
+set clipboard=unnamedplus
+
+nnoremap <Leader>n :noh<CR>

@@ -8,7 +8,8 @@ return {
         keys = {
             "<leader>tf",
             "<leader>tc",
-            "<leader>tg"
+            "<leader>tg",
+            "<leader>tt"
         },
         config = function()
             require("telescope").setup({
@@ -46,6 +47,7 @@ return {
                     hidden = false
                 })
             end)
+            vim.keymap.set("n", "<leader>tt", "<cmd>Telescope lsp_document_symbols<CR>", { desc = "Open current file declarations telescope" })
 
             require("config.telescope.multigrep").setup()
         end,

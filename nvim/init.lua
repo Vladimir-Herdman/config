@@ -27,6 +27,9 @@ vim.opt.signcolumn = "yes:1"
 -- key bindings
     -- Clear highlights
 vim.keymap.set("n", "<leader>n", "<cmd>noh<CR>", { desc = "turn off hlsearch to clear search highlights" })
+    -- Enter newline
+vim.keymap.set("n", "<CR>", "o<Esc>k", { desc = "newline below without entering insert mode" })
+vim.keymap.set("n", "<C-CR>", "O<Esc>j", { noremap = true, silent = true, desc = "newline above without entering insert mode" })
     -- jump on screen buffers
 vim.keymap.set("n", "<leader>h", "<C-w>h", { desc = "jump to left onscreen window/buffer" })
 vim.keymap.set("n", "<leader>j", "<C-w>j", { desc = "jump to below onscreen window/buffer" })
@@ -91,4 +94,5 @@ vim.keymap.set("n", "<leader>st", function()
     vim.cmd.term()
     vim.cmd.wincmd("J")
     vim.api.nvim_win_set_height(0, 10)
+    vim.cmd("call nvim_input(\"i\")")
 end, { desc = "Create small terminal at bottom of screen" })
