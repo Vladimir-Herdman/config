@@ -28,7 +28,16 @@ return {
                 },
                 defaults = {
                     file_ignore_patterns = {
-                        "Library/*", "Pictures/*", "Applications/*"
+                        "Library/*",
+                        "Pictures/*",
+                        "Applications/*",
+                        ".gradle/*",
+                        ".vscode/*",
+                        ".DS_Store",
+                        "node_modules/*",
+                        ".git/*",
+                        "%.scm",
+                        "%.png", "%.webp", "%.jpeg"
                     },
                     mapping = {
                         i = {
@@ -40,7 +49,13 @@ return {
 
             require("telescope").load_extension("fzf")
 
-            vim.keymap.set("n", "<leader>tf", require("telescope.builtin").find_files)
+            vim.keymap.set("n", "<leader>tf", function()
+                require("telescope.builtin").find_files({
+                    cwd = vim.fn.expand("%:p:h"),
+                    hidden = true,
+                    no_ignore = true,
+                })
+            end)
             vim.keymap.set("n", "<leader>tc", function()
                 require("telescope.builtin").find_files({
                     cwd = "/Users/vova/.config/nvim",

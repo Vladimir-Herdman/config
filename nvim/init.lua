@@ -28,8 +28,7 @@ vim.opt.signcolumn = "yes:1"
     -- Clear highlights
 vim.keymap.set("n", "<leader>n", "<cmd>noh<CR>", { desc = "turn off hlsearch to clear search highlights" })
     -- Enter newline
-vim.keymap.set("n", "<CR>", "o<Esc>k", { desc = "newline below without entering insert mode" })
-vim.keymap.set("n", "<C-CR>", "O<Esc>j", { noremap = true, silent = true, desc = "newline above without entering insert mode" })
+vim.keymap.set("n", "<C-CR>", "o<Esc>k", { desc = "newline below without entering insert mode" })
     -- jump on screen buffers
 vim.keymap.set("n", "<leader>h", "<C-w>h", { desc = "jump to left onscreen window/buffer" })
 vim.keymap.set("n", "<leader>j", "<C-w>j", { desc = "jump to below onscreen window/buffer" })
@@ -90,8 +89,10 @@ vim.api.nvim_create_autocmd("TermOpen", {  -- Make terminal buffer look more ter
 })
 vim.keymap.set("t", "<esc><esc>", "<c-\\><c-n>", { desc = "Leave terminal mode while in terminal" })
 vim.keymap.set("n", "<leader>st", function()
+    local current_buf_dir = vim.fn.expand("%:p:h")
+    print(current_buf_dir)
     vim.cmd.vnew()
-    vim.cmd.term()
+    vim.fn.termopen("zsh -c 'cd " .. current_buf_dir .. " && zsh'")
     vim.cmd.wincmd("J")
     vim.api.nvim_win_set_height(0, 10)
     vim.cmd("call nvim_input(\"i\")")

@@ -1,10 +1,13 @@
+"-- settings
 let mapleader=" "
 
 set showmode
+set showcmd
+set visualbell
 set so=999
 set nu
 set rnu
-set hls
+set hlsearch
 set keymodel=
 
 set mouse=a
@@ -12,4 +15,11 @@ set cursorline
 set incsearch
 set clipboard=unnamedplus
 
+"-- mappings
 nnoremap <Leader>n :noh<CR>
+nnoremap <CR> o<Esc>k
+nnoremap <C-CR> O<Esc>j
+
+"-- plugins
+set which-key
+set notimeout

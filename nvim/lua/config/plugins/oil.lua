@@ -3,12 +3,18 @@ return {
         'stevearc/oil.nvim',
         ---@module 'oil'
         ---@type oil.SetupOpts
+        keys = {
+            "-"
+        },
         config = function()
             require("oil").setup({
+                default_file_explorer = true,
                 view_options = {
-                    is_hidden_file = function(name, bufnr)
-                        return name ~= ".." and vim.startswith(name, ".")
-                    end,
+                    show_hidden = true,
+                },
+                delete_to_trash = true,
+                keymaps = {
+                    ["q"] = "actions.close",
                 },
             })
 
