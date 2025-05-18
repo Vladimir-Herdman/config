@@ -13,6 +13,7 @@ def {}({}):
     {}
 ]], { i(1, "func"), i(2, "args"), i(3, "pass") })),
 
+
     s("class", fmt([[
 class {}:
     def __init__(self, {}):

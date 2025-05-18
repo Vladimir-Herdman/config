@@ -15,12 +15,14 @@ int main({}, {}) {{
 }}
 ]], { i(1, "int argc"), i(2, "const char* argv[]"), i(3, "// code goes here") })),
 
-    s("fn", fmt([[
+
+    s("func", fmt([[
 {} {}({}) {{
     {};
 }}
 ]], { i(1, "type"), i(2, "func"), i(3, "attr"), i(4, "// code to be executed") })),
-    
+
+
     s("class", fmt([[
 class {} {{
     private:
@@ -31,11 +33,13 @@ class {} {{
 }};
 ]], { i(1, "ClassName") })),
 
+
     s("struct", fmt([[
 struct {} {{
     {};
 }};
 ]], { i(1, "Name"), i(2, "// code goes here") })),
+
 
     s("enum", fmt([[
 enum {} {{

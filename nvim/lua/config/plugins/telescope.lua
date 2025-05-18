@@ -6,10 +6,10 @@ return {
             { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
         },
         keys = {
-            "<leader>tf",
-            "<leader>tc",
-            "<leader>tg",
-            "<leader>tt"
+            "<Leader>tf",
+            "<Leader>tc",
+            "<Leader>tg",
+            "<Leader>tt"
         },
         config = function()
             require("telescope").setup({
@@ -49,20 +49,20 @@ return {
 
             require("telescope").load_extension("fzf")
 
-            vim.keymap.set("n", "<leader>tf", function()
+            vim.keymap.set("n", "<Leader>tf", function()
                 require("telescope.builtin").find_files({
                     cwd = vim.fn.expand("%:p:h"),
                     hidden = true,
                     no_ignore = true,
                 })
             end)
-            vim.keymap.set("n", "<leader>tc", function()
+            vim.keymap.set("n", "<Leader>tc", function()
                 require("telescope.builtin").find_files({
                     cwd = "/Users/vova/.config/nvim",
                     hidden = false
                 })
             end)
-            vim.keymap.set("n", "<leader>tt", "<cmd>Telescope lsp_document_symbols<CR>", { desc = "Open current file declarations telescope" })
+            vim.keymap.set("n", "<Leader>tt", "<cmd>Telescope lsp_document_symbols<CR>", { desc = "Open current file declarations telescope" })
 
             require("config.telescope.multigrep").setup()
         end,

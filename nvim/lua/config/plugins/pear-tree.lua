@@ -1,3 +1,4 @@
+-- For nice character matching
 return {
     {
         "tmsvg/pear-tree",
