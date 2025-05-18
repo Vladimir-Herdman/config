@@ -28,12 +28,7 @@ return {
             }
 
             -- Do random here to choose personal or original fortunes/quotes
-            local fortune
-            if (math.random(1, 4) > 2) then
-                fortune = require("alpha.fortune")
-            else
-                fortune = require("config.personal_fortune")
-            end
+            local fortune = require("config.personal_fortune")
             dashboard.section.footer.val = fortune()
 
             alpha.setup(dashboard.opts)

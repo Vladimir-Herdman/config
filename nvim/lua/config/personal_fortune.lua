@@ -103,6 +103,16 @@ local fortune_list = {
         "",
         "- Sun Tzu, The Art of War"
     },
+    {
+        "\"Quidquid latine dictum sit, altum sonatur.\n\n- Whatever is said in Latin sounds profound.\"",
+        "",
+        "- Roedy Green"
+    },
+    {
+        "\"Yeah its probably better to call less times but yknow theres nothing more permanent than a temporary solution\"",
+        "",
+        "- Spencer Thomas"
+    },
 }
 
 --- @return table

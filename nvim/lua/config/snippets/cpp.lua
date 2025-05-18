@@ -23,10 +23,10 @@ int main({}, {}) {{
     
     s("class", fmt([[
 class {} {{
-    public:
-
-
     private:
+
+
+    public:
         
 }};
 ]], { i(1, "ClassName") })),
