@@ -13,26 +13,32 @@ precmd() { vcs_info }
 zstyle ':vcs_info:git:*' formats '%b'
 setopt PROMPT_SUBST
 
+# Setup prompt based off git status and virtual environment
 update_prompt(){
     vcs_info
+
     local vir_venv=""
     if [[ -n "$VIRTUAL_ENV" ]]; then
         vir_venv="%{%F{magenta}%}($(basename "$VIRTUAL_ENV"))%{$reset_color%}"
     fi
+
     if [[ -n "$vcs_info_msg_0_" ]]; then
-        local STATUS=$(command git status --porcelain 2> /dev/null | tail -n1)
-        if [[ -n $STATUS ]]; then
+        local git_status_results=$(git status --porcelain 2> /dev/null)
+
+        if echo $git_status_results | grep -qE '^(A|M) '; then
+            local status_symbol="%{$fg[yellow]%}&%{$reset_color%}"
+        elif [[ -n $git_status_results ]]; then
             local status_symbol="%{$fg[red]%}x%{$reset_color%}"
         else
             local status_symbol="%{$fg[green]%}o%{$reset_color%}"
         fi
-        PROMPT="${vir_venv}[%n] in %{%F{red}%}%1~%{%f%} on %{%F{blue}%}git:[${vcs_info_msg_0_}] ${status_symbol} %# "
+
+        PROMPT="${vir_venv}[%n] in %{%F{#83c092}%}%1~%{%f%} on %{%F{blue}%}git:[${vcs_info_msg_0_}] ${status_symbol} %# "
     else
-        PROMPT="${vir_venv}[%n] [%D{%L:%M:%S}] in %{%F{red}%}%2~%{%f%} %# "
+        PROMPT="${vir_venv}[%n] [%D{%L:%M:%S}] in %{%F{#83c092}%}%2~%{%f%} %# "
     fi
 }
 precmd_functions+=(update_prompt)
-chpwd_functions+=(update_prompt)
 
 DISABLE_AUTO_TITLE="true"
 
