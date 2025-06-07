@@ -2,6 +2,7 @@
 return {
     {
         "stefandtw/quickfix-reflector.vim",
+        ft = "qf",
         config = function()
             vim.g.qf_modifiable = 1
         end,

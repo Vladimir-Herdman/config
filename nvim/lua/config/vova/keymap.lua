@@ -6,13 +6,13 @@ vim.keymap.set("n", "<Leader>c", "i<C-r>=", { desc = "Enter calculation result" 
 
 -- Substitutions
 vim.keymap.set("n", "s", "<cmd>&&<CR>", { desc = "Repeat last substitution with flags" })
-vim.keymap.set("n", "<Leader>sw", ":%s/\\<<C-r><C-w>\\>//gcI<Left><Left><Left><Left>", { desc = "Replace current word under cursor" })
+vim.keymap.set("n", "<Leader>sg", ":%s/\\<<C-r><C-w>\\>//gcI<Left><Left><Left><Left>", { desc = "Globally replace under cursor" })
 
 -- jump on screen buffers
-vim.keymap.set("n", "<Leader>h", "<C-w>h", { desc = "jump to left onscreen window/buffer" })
-vim.keymap.set("n", "<Leader>j", "<C-w>j", { desc = "jump to below onscreen window/buffer" })
-vim.keymap.set("n", "<Leader>k", "<C-w>k", { desc = "jump to above onscreen window/buffer" })
-vim.keymap.set("n", "<Leader>l", "<C-w>l", { desc = "jump to right onscreen window/buffer" })
+vim.keymap.set("n", "<C-h>", "<C-w>h", { desc = "jump to left onscreen window/buffer" })
+vim.keymap.set("n", "<C-j>", "<C-w>j", { desc = "jump to below onscreen window/buffer" })
+vim.keymap.set("n", "<C-k>", "<C-w>k", { desc = "jump to above onscreen window/buffer" })
+vim.keymap.set("n", "<C-l>", "<C-w>l", { desc = "jump to right onscreen window/buffer" })
 
 -- split screen
 vim.keymap.set("n", "<Leader>sv", "<cmd>vsplit<CR>", { desc = "Split screen vertically" })
@@ -39,3 +39,8 @@ vim.keymap.set("n", "<Leader>fw", vim.lsp.buf.code_action, { desc = "Fix warning
 --grr:  Get all variable references in file (vim.lsp.buf.references)
 --gri:  Get implementation of symbol under cursor, so definition location of word under cursor (vim.diagnostic.implementation)
 --gra:  Get all actions on this code piece, fix warning options (vim.lsp.buf.code_action)
+
+vim.keymap.set("n", "<Leader>w", "<Cmd>w<CR>", { desc = "faster saving" })
+vim.keymap.set("n", "<Leader>q", "<Cmd>q<CR>", { desc = "faster saving" })
+vim.keymap.set("n", "H", "^", { desc = "Move to line beginning" })
+vim.keymap.set("n", "L", "$", { desc = "Move to line end" })

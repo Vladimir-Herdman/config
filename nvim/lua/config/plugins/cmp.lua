@@ -1,10 +1,11 @@
 return {
     {
         "hrsh7th/nvim-cmp",
-        lazy = false,
+        ft = _G.LAZY_LOAD_ON_FILE,
         priority = 100,
         dependencies = {
             "onsails/lspkind.nvim",
+            "rafamadriz/friendly-snippets",
             "hrsh7th/cmp-nvim-lsp",
             "hrsh7th/cmp-path",
             "hrsh7th/cmp-buffer",

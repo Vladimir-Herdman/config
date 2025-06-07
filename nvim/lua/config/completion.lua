@@ -9,9 +9,12 @@ local cmp = require("cmp")
 cmp.setup({
     sources = {
         { name = "nvim_lsp" },
+        { name = "luasnip" },
+        { name = "friendly-snippets" },
         { name = "path" },
         { name = "buffer" },
         { name = "nvim_lsp_signature_help" },
+        { name = "lazydev", group_index = 0 }
     },
     mapping = {
         ["<C-n>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
@@ -44,6 +47,9 @@ ls.config.set_config({
 for _, ft_path in ipairs(vim.api.nvim_get_runtime_file("lua/config/snippets/*.lua", true)) do
     loadfile(ft_path)()
 end
+
+-- load community friendly snippets
+require("luasnip.loaders.from_vscode").lazy_load()
 
 vim.keymap.set({ "i", "s" }, "<c-k>", function()  -- ctrl k to expand if there's something to expand
     if (ls.expand_or_jumpable()) then                     -- and ctrl k to continue forward to nodes in expansion

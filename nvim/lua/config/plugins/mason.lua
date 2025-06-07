@@ -1,12 +1,14 @@
 return {
     {
         "mason-org/mason.nvim",
+        ft = _G.LAZY_LOAD_ON_FILE,
         config = function()
             require("mason").setup()
         end,
     },
     {
         "mason-org/mason-lspconfig.nvim",
+        ft = _G.LAZY_LOAD_ON_FILE,
         dependencies = { "mason.nvim" },
         config = function()
             require("mason-lspconfig").setup({

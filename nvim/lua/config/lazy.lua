@@ -19,7 +19,7 @@ vim.opt.rtp:prepend(lazypath)
 vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
 
--- lazy setup and plugin loading
+-- lazy setup and plugin loading (different for vscode)
 require("lazy").setup({
     {
         import = "config.plugins"

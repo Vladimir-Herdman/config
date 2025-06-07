@@ -61,7 +61,6 @@ vim.api.nvim_create_autocmd("FileType", {
 
 -- Terminal
 vim.api.nvim_create_autocmd("TermOpen", {  -- Make terminal buffer look more terminal-like
-    group = vim.api.nvim_create_augroup("custom-term-open", { clear = true }),
     callback = function()
         vim.opt.number = false
         vim.opt.relativenumber = false

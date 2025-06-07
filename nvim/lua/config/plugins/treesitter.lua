@@ -1,6 +1,7 @@
 return {
     {
         "nvim-treesitter/nvim-treesitter",
+        ft = _G.LAZY_LOAD_ON_FILE,
         config = function()
             require("nvim-treesitter.configs").setup({
                 ensure_installed = { "c", "lua", "vim", "vimdoc", "query", "cpp", "python", "markdown", "markdown_inline", "sql", "html", "javascript", "css", "bash" },
@@ -33,9 +34,9 @@ return {
                             ["af"] = "@function.outer",
                             ["if"] = "@function.inner",
                             ["ac"] = "@class.outer",
-                            ["ic"] = { query = "@class.inner", desc = "Select inner part of a class region" },
+                            ["ic"] = vim.g.programming_languages_to_lazy_load_on,
                             -- You can also use captures from other query groups like `locals.scm`
-                            ["as"] = { query = "@local.scope", query_group = "locals", desc = "Select language scope" },
+                            ["as"] = vim.g.programming_languages_to_lazy_load_on,
                         },
                         selection_modes = {
                             ['@parameter.outer'] = 'v', -- charwise
@@ -54,5 +55,6 @@ return {
     },
     {
         "nvim-treesitter/nvim-treesitter-textobjects",
+        ft = _G.LAZY_LOAD_ON_FILE,
     }
 }
