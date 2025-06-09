@@ -34,6 +34,14 @@ nnoremap ya mzggVGy`z
 
 nnoremap s :&&<CR>
 nnoremap <Leader>sg :%s/\<<C-r><C-w>\>//gcI<Left><Left><Left><Left>
+nnoremap ciw "_ciw
+
+nnoremap <leader>; A;<Esc>o
+nnoremap <leader>, A,<Esc>o
+
+nnoremap <leader>w :w<CR>
+nnoremap <leader>q :q<CR>
+nnoremap <leader>x :wq<CR>
 
 nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
@@ -47,6 +55,11 @@ nnoremap <Up> :m -2 <CR>
 nnoremap <Down> :m +1 <CR>
 nnoremap <Left> :tabprevious<CR>
 nnoremap <Right> :tabNext<CR>
+
+nnoremap gt <C-]>
+
+nnoremap H ^
+nnoremap L $
 
 vnoremap J :m '>+1<CR>gv=gv
 vnoremap K :m '<-2<CR>gv=gv
@@ -68,4 +81,6 @@ endif
 set background=dark
 let g:everforest_background = 'medium'
 let g:everforest_better_performance = 1
+let g:everforest_enable_italic = 1
+let g:everforest_transparent_background = 1
 colorscheme everforest
