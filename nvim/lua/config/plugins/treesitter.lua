@@ -1,17 +1,16 @@
 return {
     {
         "nvim-treesitter/nvim-treesitter",
-        ft = _G.LAZY_LOAD_ON_FILE,
+        --ft = _G.LAZY_LOAD_ON_FILE,
         config = function()
             require("nvim-treesitter.configs").setup({
-                ensure_installed = { "c", "lua", "vim", "vimdoc", "query", "cpp", "python", "markdown", "markdown_inline", "sql", "html", "javascript", "css", "bash" },
+                ensure_installed = { "c", "lua", "vim", "vimdoc", "query", "cpp", "python", "markdown", "markdown_inline", "sql", "html", "javascript", "tsx", "typescript", "css", "bash" },
 
                 auto_install = true,
                 sync_install = true,
 
-                highlight = {
-                    enable = true,
-                },
+                highlight = { enable = true, },
+                indent = { enable = true },
 
                 incremental_selection = {
                     enable = true,
@@ -55,6 +54,6 @@ return {
     },
     {
         "nvim-treesitter/nvim-treesitter-textobjects",
-        ft = _G.LAZY_LOAD_ON_FILE,
+        --ft = _G.LAZY_LOAD_ON_FILE,
     }
 }

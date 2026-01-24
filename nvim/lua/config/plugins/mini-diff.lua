@@ -15,17 +15,17 @@ return {
                 }
             })
 
-            vim.api.nvim_create_autocmd("BufWinEnter", {
-                desc = "autocommand to set local sign column if in tracked fil",
-                callback = function(args)
-                    local git_repo = vim.fn.finddir(".git", ".;")
-                    if (git_repo ~= "") then
-                        vim.opt_local.signcolumn = "yes:2"
+            --vim.api.nvim_create_autocmd("BufWinEnter", {
+                --desc = "autocommand to set local sign column if in tracked fil",
+                --callback = function(args)
+                    --local git_repo = vim.fn.finddir(".git", ".;")
+                    --if (git_repo ~= "") then
+                        --vim.opt_local.signcolumn = "yes:2"
                         --Original is blue: 
                         --vim.api.nvim_set_hl(0, 'MiniDiffSignChange', { fg = '#d1d07b' })
-                    end
-                end
-            })
-        end,
+                    --end
+                --end
+            --})
+        end
     }
 }

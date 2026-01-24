@@ -1,22 +1,22 @@
 return {
     {
         "mason-org/mason.nvim",
-        ft = _G.LAZY_LOAD_ON_FILE,
+        --ft = _G.LAZY_LOAD_ON_FILE,
         config = function()
             require("mason").setup()
         end,
     },
     {
         "mason-org/mason-lspconfig.nvim",
-        ft = _G.LAZY_LOAD_ON_FILE,
+        --ft = _G.LAZY_LOAD_ON_FILE,
         dependencies = { "mason.nvim" },
         config = function()
             require("mason-lspconfig").setup({
-                automatic_enable = true
+                ensure_installed = { "lua_ls" },
             })
 
-            local lspcon = require("lspconfig")
-            lspcon.lua_ls.setup({
+            require("lspconfig")
+            vim.lsp.config("lua_ls", {
                 settings = {
                     Lua = {
                         diagnostics = {

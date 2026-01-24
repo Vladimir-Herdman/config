@@ -1,7 +1,7 @@
 return {
     {
         "hrsh7th/nvim-cmp",
-        ft = _G.LAZY_LOAD_ON_FILE,
+        --ft = _G.LAZY_LOAD_ON_FILE,
         priority = 100,
         dependencies = {
             "onsails/lspkind.nvim",

@@ -14,7 +14,7 @@ cmp.setup({
         { name = "path" },
         { name = "buffer" },
         { name = "nvim_lsp_signature_help" },
-        { name = "lazydev", group_index = 0 }
+        { name = "lazydev", group_index = 0 },
     },
     mapping = {
         ["<C-n>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
@@ -28,7 +28,7 @@ cmp.setup({
         ),
     },
 
-    -- Enable luasnip ot handle snipper expansion for nvim-cmp
+    -- Enable luasnip to handle snippet expansion for nvim-cmp
     snippet = {
         expand = function(args)
             require("luasnip").lsp_expand(args.body)
