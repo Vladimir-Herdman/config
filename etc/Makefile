@@ -19,19 +19,21 @@ INC_FLAGS := $(addprefix -I,$(INC_DIRS))
 
 CC := clang
 CFLAGS := $(INC_FLAGS) -MMD -MP -std=c23 -O3 -Wall -Wextra
-CLINK := -lncurses
-LDFLAGS :=
 CDEFS :=
+LDLIBS :=
+LDFLAGS :=
 
+#Linking stage, so don't need compile time flags and such, just linker options/additions
 $(TARGET_DIR)/$(TARGET_EXEC): $(OBJS)
 	@mkdir -p $(dir $@)
 	@printf '\n  Compiled binary: %s\n' $@
-	@$(CC) $(OBJS)  -o $(TARGET_DIR)/$(TARGET_EXEC) $(LDFLAGS)
+	@$(CC) $(OBJS)  -o $(TARGET_DIR)/$(TARGET_EXEC) $(LDFLAGS) $(LDLIBS)
 
+#Compilation stage, so set all compilation options/flags here
 $(BUILD_DIR)/%.c.o: %.c
 	@mkdir -p $(dir $@)
 	@printf '  Compiling: %s\n' $@
-	@$(CC) $(CFLAGS) -c $< -o $@
+	@$(CC) $(CFLAGS) $(CDEFS) -c $< -o $@
 
 .PHONY: clean run
 clean: 
