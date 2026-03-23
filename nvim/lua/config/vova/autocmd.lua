@@ -30,7 +30,7 @@ vim.api.nvim_create_autocmd("FileType", {
 })
 
 vim.api.nvim_create_autocmd("FileType", {
-    pattern = {"html", "grads", "javascript", "css", "typescriptreact"},
+    pattern = {"html", "grads", "javascript", "css", "typescriptreact", "R"},
     callback = function()
         vim.opt_local.tabstop = 2
         vim.opt_local.softtabstop = 2
@@ -64,13 +64,13 @@ end, { desc = "Create small terminal at bottom of screen" })
 vim.keymap.set("n", "<Leader>ob", function()
     local filename = vim.fn.expand("%:p")
     if (string.sub(filename, -2, -1) == "md") then
-        local vault = "/Users/vova/notes/"
+        local vault = "/Users/vova/obsidian/notes"
         filename = filename:gsub(vault, "")
         vim.fn.system("open 'obsidian://open?file=" .. filename .. "'")
     end
 end)
 
--- Quixkfix List
+-- Quickfix List
 vim.api.nvim_create_autocmd('Filetype', {
     pattern = 'qf',
     callback = function()

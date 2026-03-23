@@ -25,3 +25,5 @@ local function wipeout_inactive_bufs()
     end
 vim.api.nvim_create_user_command('LsWipeInactive', wipeout_inactive_bufs, {})
 vim.keymap.set("n", "<leader>b", "<cmd>LsWipeInactive<CR>", { desc="clean out hidden unedited buffers" })
+
+vim.api.nvim_create_user_command("VHcdcur", function() vim.cmd("cd %:h") end, {})

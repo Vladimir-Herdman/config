@@ -8,7 +8,7 @@ vim.keymap.set("n", "<Leader>n", function()
 end, { desc = "turn off hlsearch to clear search highlights" })
 
 -- Enter expression register
-vim.keymap.set("n", "<Leader>c", "i<C-r>=", { desc = "Enter calculation result" })
+vim.keymap.set("n", "<Leader>c", "<Cmd>cope<CR>", { desc = "Open quickfix list" })
 
 -- Substitutions
 vim.keymap.set("n", "s", "<cmd>&&<CR>", { desc = "Repeat last substitution with flags" })

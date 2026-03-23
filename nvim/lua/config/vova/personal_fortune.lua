@@ -74,11 +74,6 @@ local fortune_list = {
         "- Miyamoto Musashi, A Book of Five Rings"
     },
     {
-        "\"from one thing, know ten thousand things\"",
-        "",
-        "- Miyamoto Musashi, A Book of Five Rings"
-    },
-    {
         "\"You should not have any special fondness for a particular weapon, or anything else, for that matter. Too much is the same as not enough. Without imitating anyone else, you should have as much weaponry as suits you.\"",
         "",
         "- Miyamoto Musashi, A Book of Five Rings"
@@ -187,6 +182,15 @@ local fortune_list = {
         "",
         "- Mark Uakick, 'Reading a Poem: 20 Strategies'",
     },
+    {
+        "Comments are good, but there is also a danger of over-commenting. NEVER try to explain HOW your code works in a comment: it's much better to write the code so that the _working_ is obvious, and it's a waste of time to explain badly written code.",
+        "",
+        "Generally, you want your comments to tell WHAT your code does, not HOW. Also, try to avoid putting comments inside a function body: if the function is so complex that you need to separately comment parts of it, you should probably go back to chapter 5 for a while. You can make small comments to note or warn about something particularly clever (or ugly), but try to avoid excess. Instead, put the comments at the head of the function, telling people what it does, and possibly WHY it does it.",
+        "",
+        "- Linus Torvalds, CodingStyle, linux kernal",
+    },
+
+
 }
 
 --- @return table
