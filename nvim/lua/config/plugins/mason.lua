@@ -8,13 +8,15 @@ return {
     },
     {
         "mason-org/mason-lspconfig.nvim",
-        --ft = _G.LAZY_LOAD_ON_FILE,
-        dependencies = { "mason.nvim" },
+        opts = {
+            ensure_installed = { "lua_ls" },
+        },
+        dependencies = {
+            { "mason-org/mason.nvim", opts = {} },
+            "neovim/nvim-lspconfig",
+        },
         config = function()
-            require("mason-lspconfig").setup({
-                ensure_installed = { "lua_ls" },
-            })
-
+            require("mason-lspconfig").setup()
             require("lspconfig")
             vim.lsp.config("lua_ls", {
                 settings = {
@@ -28,6 +30,9 @@ return {
                         }
                     }
                 }
+            })
+            vim.lsp.config("r_language_server", {
+                filetypes = { 'r', 'rmd' },
             })
         end,
     }

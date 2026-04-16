@@ -19,12 +19,11 @@ return {
             }
 
             dashboard.section.buttons.val = {
-                dashboard.button( "e", "  > New File" , ":ene <BAR> startinsert <CR>"),
-                dashboard.button( "f", "  > Find File", "<cmd>cd $HOME<CR> | <Leader>tf"),
-                dashboard.button( "g", "  > Find Word", "<cmd>cd $HOME<CR> | <Leader>tg"),
-                dashboard.button( "r", "  > Recent"   , ":Telescope oldfiles<CR>"),
-                dashboard.button( "u", "  > Update Plugins" , "<cmd>Lazy sync<CR>"),
-                dashboard.button( "q", "  > Quit NVIM", "<cmd>qa<CR>"),
+                dashboard.button( "e", "> :enew" , ":ene <BAR> startinsert <CR>"),
+                dashboard.button( "g", "> Grep for Word", "<Leader>tg"),
+                dashboard.button( "r", "> Recent files"   , ":Telescope oldfiles<CR>"),
+                dashboard.button( "u", "> Update Plugins" , "<cmd>Lazy sync<CR>"),
+                dashboard.button( "q", "> Quit NVIM", "<cmd>qa<CR>"),
             }
 
             -- Do random here to choose personal or original fortunes/quotes

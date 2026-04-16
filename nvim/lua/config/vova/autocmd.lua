@@ -17,15 +17,63 @@ vim.api.nvim_create_autocmd("FileType", {  -- This is to keep telescope function
     end,
 })
 
---Reinitialize buffer markdown syntax highlighting with treesitter
+--treesitter highlighting
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = { "lua", "python", "cpp", "c", "rust", "javascript", "typescript", "java", "bash", "markdown", "html", "css", },
+    callback = function() vim.treesitter.start() end,
+})
+
+--Reinitialize buffer markdown syntax highlighting with treesitter, and markdown autocmds
 vim.api.nvim_create_autocmd("FileType", {
     pattern = "markdown",
     callback = function()
         vim.defer_fn(function()
-            vim.cmd("TSDisable highlight")
-            vim.cmd("TSEnable highlight")
+            vim.treesitter.stop()
+            vim.treesitter.start()
         end, 100)
         vim.opt_local.conceallevel = 2
+        vim.keymap.set("n", "gf", function()
+            local line = vim.fn.getline(".")
+            local spot = line:find("%[.*%]%(")
+            if spot ~= nil then
+                vim.fn.cursor({vim.fn.line("."), spot})
+                vim.cmd("norm f(llgF")
+                return
+            end
+            local cfile = vim.fn.expand("<cfile>")
+            if cfile:find("%.pdf") ~= nil then
+                local path = vim.fn.expand("%:h")
+                vim.fn.jobstart({"open", path.."/"..cfile}, {detach=true})
+                return
+            end
+            vim.cmd("norm! gf")
+        end, {desc="markdown gf also works from [words](link)", buffer=true})
+        vim.keymap.set("n", "gx", function()
+            local line = vim.fn.getline(".")
+            local spot = line:find("%[.*%]%(http")
+            if spot ~= nil then
+                vim.cmd(":norm mm")
+                vim.fn.cursor({vim.fn.line("."), spot})
+                vim.cmd(":norm f(ll")
+                vim.ui.open(vim.fn.expand("<cfile>"))
+                vim.cmd(":norm `m")
+            end
+            vim.ui.open(vim.fn.expand("<cfile>"))
+        end, {desc="markdown gx works if you're on a line containing [words](link)", buffer=true})
+        vim.keymap.set("n", "gt", function()
+            local line = vim.fn.getline(".")
+            local linkspot = line:find("%[.*%]%(http")
+            local pathspot = line:find("%[.*%]%(")
+            local nonob_path = line:find("%.%/.*%.md")
+            if linkspot ~= nil then
+                vim.cmd("norm gx")
+            elseif pathspot ~= nil then
+                vim.cmd("norm gf")
+            elseif not vim.fn.expand("%"):find("obsidian") and nonob_path then
+                vim.fn.cursor({vim.fn.line("."), nonob_path+2})
+                vim.cmd("norm! gF")
+            else vim.cmd("norm! <c-]>") end
+        end, {desc="markdown shortcut for open file/link in []() format", buffer=true})
     end
 })
 
@@ -46,7 +94,6 @@ vim.api.nvim_create_autocmd("TermOpen", {  -- Make terminal buffer look more ter
     end,
 })
 vim.keymap.set("t", "<esc><esc>", "<c-\\><c-n>", { desc = "Leave terminal mode while in terminal" })
---vim.keymap.set("t", "jj", "<c-\\><c-n>", { desc = "Leave terminal mode while in terminal" })
 
 vim.keymap.set("n", "<Leader>st", function()
     local current_buf_dir = vim.fn.expand("%:p:h")

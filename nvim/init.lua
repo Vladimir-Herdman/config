@@ -1,5 +1,6 @@
 --_G.LAZY_LOAD_ON_FILE = { "lua", "python", "cpp", "c", "javascript", "typescript", "java", "sh", "zsh", "markdown", "html", "css", }
 --TODO: on <leader>l or <leader>h, if only one current tab, then make a new one
+--CHECKOUT: https://github.com/barrettruth/preview.nvim
 require("config.lazy")
 require("config.vova.set")
 require("config.vova.keymap")
