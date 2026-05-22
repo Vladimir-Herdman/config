@@ -10,6 +10,8 @@ return {
                 nerd_font_variant = 'none'
             },
 
+            enabled = function() return not vim.tbl_contains({ "txt", "markdown" }, vim.bo.filetype) end,
+
             completion = {
                 menu = {
                     draw = {

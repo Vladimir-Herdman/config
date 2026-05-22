@@ -94,3 +94,12 @@ end, {desc="Open the man page for word underneath cursor."})
 --  more from nvim for previously set stuff.
 --local count = 0;
 --keymap("n", "<leader>`", function() count=count+1; print("test"..count) end, {desc="playing around with mark stuff"})
+
+vim.api.nvim_create_autocmd("FileType", {
+    pattern="markdown",
+    callback = function()
+        keymap("n", "<leader>.", "mrA.`r", { buffer=true })
+    end
+})
+
+keymap("n", "<leader>m", "<cmd>make<cr>")

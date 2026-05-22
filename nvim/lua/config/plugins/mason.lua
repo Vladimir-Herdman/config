@@ -3,20 +3,24 @@ return {
         "mason-org/mason.nvim",
         --ft = _G.LAZY_LOAD_ON_FILE,
         config = function()
-            require("mason").setup()
+            require("mason").setup({
+                registries = {
+                    "github:mason-org/mason-registry",
+                    "github:Crashdummyy/mason-registry",
+                }
+            })
         end,
     },
     {
         "mason-org/mason-lspconfig.nvim",
-        opts = {
-            ensure_installed = { "lua_ls" },
-        },
         dependencies = {
             { "mason-org/mason.nvim", opts = {} },
             "neovim/nvim-lspconfig",
         },
         config = function()
-            require("mason-lspconfig").setup()
+            require("mason-lspconfig").setup({
+                ensure_installed = { "lua_ls" },
+            })
             require("lspconfig")
             vim.lsp.config("lua_ls", {
                 settings = {

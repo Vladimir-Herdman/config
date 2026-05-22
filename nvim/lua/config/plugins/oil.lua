@@ -1,3 +1,4 @@
+-- Potentially checkout out canola.nvim as maintained replacement for oil functionality
 return {
     {
         'stevearc/oil.nvim',
