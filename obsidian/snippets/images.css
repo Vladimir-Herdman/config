@@ -1,0 +1,23 @@
+/* This lets me center images in markdown links so [[..|400|center]] */
+img[alt*="center"] {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Images to the right of text */
+.vh-right {
+  float: right;
+  margin-left: 4%;
+  margin-bottom: 0.7rem;
+}
+
+/* Comments around something removes line completely */
+div:not(.cm-active) > span.cm-comment {
+  color: transparent;
+}
+div.cm-line:not(.cm-active):has(> span.cm-comment) {
+  height: 5px;
+  display: absolute;
+  left: -60px;
+}

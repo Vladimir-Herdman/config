@@ -1,0 +1,10 @@
+div:not(.cm-active) > span.cm-footref.cm-hmd-barelink,
+div:not(.cm-active) > span.cm-footref.cm-hmd-barelink-end {
+    color: var(--link-color);
+    font-size: 0.75rem;
+    padding-left: 0.1rem;
+}
+
+div:not(.cm-active) > span.cm-formatting-link {
+    display: none;
+}

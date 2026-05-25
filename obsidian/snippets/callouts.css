@@ -1,0 +1,176 @@
+/* float inner figure, text wraps around */
+.callout[data-callout="float"] {
+  background-color: rgba(0,0,0,0);
+  margin: 0;
+  padding-left: 0;
+  padding-right: 0;
+  padding-bottom: 0;
+  padding-top: 10px;
+  height: auto;
+  width: 100%;
+
+  & .callout-title {
+    display: none;
+  }
+  & .callout-content {
+    display: block;
+
+    & .callout {
+      margin-left: 0;
+      margin-right: 0;
+      margin-top: 0;
+      padding-top: 0;
+      padding-bottom: 0;
+    }
+  }
+  & table, & p, & ul {
+    margin: 0;
+  }
+
+  & .callout[data-callout="left"] {
+    background-color: rgba(0,0,0,0);
+
+    padding-top: 0;
+    padding-left: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+    width: auto;
+
+    float: left;
+    padding-right: 2rem;
+    padding-bottom: 0.7rem;
+
+    & .callout-title {
+      display: none;
+    }
+  }
+  & .callout[data-callout="right"] {
+    background-color: rgba(0,0,0,0);
+
+    padding-top: 0;
+    padding-right: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+    width: auto;
+
+    float: right;
+    padding-left: 2rem;
+    padding-bottom: 0.7rem;
+
+    & .callout-title {
+      display: none;
+    }
+  }
+  & .callout[data-callout="right400"] {
+    background-color: rgba(0,0,0,0);
+
+    padding-top: 0;
+    padding-right: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+    width: 400px;
+
+    float: right;
+    padding-left: 2rem;
+    padding-bottom: 0.7rem;
+
+    & .callout-title {
+      display: none;
+    }
+  }
+}
+
+/* flex container rows */
+.callout[data-callout="flex"] {
+  background-color: rgba(0,0,0,0);
+  margin: 0;
+  padding-left: 0;
+  padding-right: 0;
+  padding-bottom: 0;
+  padding-top: 10px;
+  width: 100%;
+  height: fit-content;
+  display: flex;
+
+  & .callout-title {
+    display: none;
+  }
+  & .callout-content {
+    & .callout {
+      margin-left: 0;
+      margin-right: 0;
+      margin-top: 0;
+      padding-top: 0;
+      padding-bottom: 0;
+    }
+  }
+  & > .callout-content {
+    display: flex;
+    flex-direction: row;
+    row-gap: 3%;
+    column-gap: 3%;
+    flex-wrap: wrap;
+    width: 100%;
+    height: 100%;
+
+    & .callout {
+      margin-left: 0;
+      margin-right: 0;
+      margin-top: 0;
+      padding-top: 0;
+      padding-bottom: 0;
+    }
+  }
+  & table, & p, & ul {
+    margin: 0;
+  }
+
+  & .callout[data-callout="cardfit"] {
+    background-color: rgba(0, 0, 0, 0);
+
+    padding-top: 0;
+    padding-left: 0;
+    margin-top: 0;
+    margin-bottom: 20px;
+    width: fit-content;
+    border-radius: 10px;
+
+    & .callout-title {display: none;}
+  }
+  & .callout[data-callout="card350"] {
+    background-color: rgba(0, 0, 0, 0);
+
+    padding-top: 0;
+    padding-left: 0;
+    margin-top: 0;
+    margin-bottom: 20px;
+    width: 350px;
+    border-radius: 10px;
+
+    & .callout-title {display: none;}
+  }
+  & .callout[data-callout="card350red"] {
+    background-color: rgba(128, 0, 32, 0.20);
+
+    padding-top: 0;
+    padding-left: 0;
+    margin-top: 0;
+    margin-bottom: 20px;
+    width: 350px;
+    border-radius: 10px;
+
+    & .callout-title {display: none;}
+  }
+  & .callout[data-callout="card350blue"] {
+    background-color: rgba(0, 49, 110, 0.20);
+
+    padding-top: 0;
+    padding-left: 0;
+    margin-top: 0;
+    margin-bottom: 20px;
+    width: 350px;
+    border-radius: 10px;
+
+    & .callout-title {display: none;}
+  }
+}

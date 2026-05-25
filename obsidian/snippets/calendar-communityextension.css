@@ -1,0 +1,8 @@
+#calendar-container {
+    color: rgb(125, 180, 109);
+}
+
+#calendar-container .today {
+    --color-background-day: rgb(46, 49, 50);
+    border: solid rgba(256, 256, 256, 0.3) 1px;
+}

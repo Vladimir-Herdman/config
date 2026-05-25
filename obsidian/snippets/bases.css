@@ -1,0 +1,5 @@
+.bases-embed[alt~="no-toolbar"] {
+    & .bases-header {
+        display: none;
+    }
+}

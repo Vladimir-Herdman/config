@@ -1,0 +1,16 @@
+/* This sets blockID invisible in live preview unless on active line or hover */
+:not(.cm-active) > .cm-blockid  {
+    opacity: 0;
+}
+:not(.cm-active) > .cm-blockid:hover  {
+    opacity: 1;
+}
+
+/* This colors clickable links similar to blue internet links */
+.cm-line span.cm-underline,
+.cm-content a.internal-link,
+.cm-content span.cm-hmd-internal-link,
+.cm-content span.cm-link {
+  color: #7575ff !important;
+  text-decoration: underline !important;
+}

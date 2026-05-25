@@ -1,0 +1,38 @@
+#This Makefile works for a csharp applications. It uses the executable to determine
+#when source .cs files have changed relative to the last build. Specifically, the
+#timestamp of the executable compared to any source files timestamp, to determine
+#if a change is needed.
+
+#Modified from 'etc/Makefile' for just csharp. It's kinda raw right now since I
+#made it for a project, but just change it proper when needing a general csharp one.
+
+#Settings
+SRC_DIRS := ./src
+STAMP = ./src/bin/Debug/net10.0/src
+
+#Variables
+SRC := $(shell find $(SRC_DIRS) -name '*.cs' -not -path "*/obj/*" -not -path "*/bin/*")
+
+#Colors
+RED := \033[38;2;255;0;0m
+YELLOW := \033[38;2;255;255;0m
+GREEN := \033[38;2;21;204;4m
+NC := \033[0m
+
+#Building
+$(STAMP): $(SRC)
+	@printf '  $(YELLOW)Building$(NC): %s\n' $@
+	@cd src; dotnet build;
+	@printf '  $(GREEN)Built Binary$(NC): %s\n' $@
+
+#Commands
+.PHONY: clean run
+clean: 
+	@printf '  $(RED)Cleaning$(NC)\n'
+	@cd src/; dotnet clean;
+	@printf '  $(RED)rm -r$(NC) src/bin src/obj\n'
+	@rm -r src/obj src/bin 2>/dev/null || true
+
+run: $(STAMP)
+	@printf '  $(GREEN)Running Binary$(NC): ./src/bin/Debug/net10.0/src\n'
+	@./src/bin/Debug/net10.0/src

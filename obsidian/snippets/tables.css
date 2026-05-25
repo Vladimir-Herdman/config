@@ -1,0 +1,10 @@
+/* Remove the upper padding around a table, so it's flush with everything else.
+ * It uses inline so we important to work around that */
+.cm-embed-block.cm-table-widget {
+  padding-top: 0 !important;
+  padding-bottom: 4px !important;
+}
+/* Get line above table and shrink it too. */
+.cm-content .cm-line:has(+ .cm-embed-block.cm-table-widget) {
+  height: 6px;
+}
